@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Uploaded Files</title>
+    <link rel="stylesheet" href="/static/stail.css">
+</head>
+<body>
+    <h1>Uploaded Files</h1>
+    <form id="upload-form" method="POST" action="/" enctype="multipart/form-data">
+        <input type="file" name="nbt_file">
+        <input type="submit" value="Upload">
+    </form>
+    <ul>
+        {% for file in files %}
+            <li>
+                <a href="{{ file.path }}">{{ file.name }}</a>
+                <form action="/delete/{{ file.name }}" method="POST" style="display:inline">
+                    <input type="hidden" name="delete" value="{{ file.name }}">
+                    <input type="submit" value="Delete">
+                </form>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
+
