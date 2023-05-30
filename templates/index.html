@@ -2,7 +2,26 @@
 <html>
 <head>
     <title>Uploaded Files</title>
-    <link rel="stylesheet" href="/static/stail.css">
+    <style>
+        body {
+            background-image: url("https://cdn.discordapp.com/attachments/970436863485681675/1113196465385381938/image.png");
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        
+        h1 {
+            font-size: 24px; /* Изменение размера заголовка */
+        }
+        
+        input[type="submit"], button {
+            width: 100px; /* Изменение ширины кнопок */
+            font-size: 16px; /* Изменение размера текста на кнопках */
+        }
+        
+        li {
+            font-size: 18px; /* Изменение размера текста в элементах списка */
+        }
+    </style>
 </head>
 <body>
     <h1>Uploaded Files</h1>
@@ -13,14 +32,16 @@
     <ul>
         {% for file in files %}
             <li>
-                <a href="{{ file.path }}">{{ file.name }}</a>
+                {{ file.name }}
                 <form action="/delete/{{ file.name }}" method="POST" style="display:inline">
                     <input type="hidden" name="delete" value="{{ file.name }}">
                     <input type="submit" value="Delete">
+                </form>
+                <form action="/download/{{ file.name }}" method="GET" style="display:inline">
+                    <button type="submit">Download</button>
                 </form>
             </li>
         {% endfor %}
     </ul>
 </body>
 </html>
-

@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, request
+from flask import Flask, render_template, redirect, request, send_file
 from flask_sqlalchemy import SQLAlchemy
 import os
 
@@ -21,26 +21,31 @@ with app.app_context():
 def delete_file(name):
     file = File.query.get(name)
     if file:
-        # Удаление файла из файловой системы
         file_path = file.path
         os.remove(file_path)
 
-        # Удаление записи из базы данных
         db.session.delete(file)
         db.session.commit()
 
     return redirect("/")
 
 
+@app.route('/download/<name>', methods=['GET'])
+def download_file(name):
+    file = File.query.get(name)
+    if file:
+        file_path = file.path
+        return send_file(file_path, as_attachment=True)
+
+    return redirect("/")
+
 @app.route('/', methods=['GET', 'POST'])
 def index():
-    if request.method == 'POST':
-        # Обработка удаления файла
+    if request.method == 'POST': 
         if 'delete' in request.form:
             name = request.form['delete']
             return delete_file(name)
 
-        # Обработка загрузки файла
         nbt_file = request.files['nbt_file']
         file_path = f"uploads/{nbt_file.filename}"
         nbt_file.save(file_path)
