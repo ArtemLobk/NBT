@@ -1,47 +1,43 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Uploaded Files</title>
-    <style>
-        body {
-            background-image: url("https://cdn.discordapp.com/attachments/970436863485681675/1113196465385381938/image.png");
-            background-repeat: no-repeat;
-            background-size: cover;
-        }
-        
-        h1 {
-            font-size: 24px; 
-        }
-        
-        input[type="submit"], button {
-            width: 100px; 
-            font-size: 16px; 
-        }
-        
-        li {
-            font-size: 18px; 
-        }
-    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>File Manager</title>
+    <link rel="stylesheet" href="static/styles.css">
 </head>
 <body>
-    <h1>Uploaded Files</h1>
-    <form id="upload-form" method="POST" action="/" enctype="multipart/form-data">
-        <input type="file" name="nbt_file">
-        <input type="submit" value="Upload">
-    </form>
-    <ul>
-        {% for file in files %}
-            <li>
-                {{ file.name }}
-                <form action="/delete/{{ file.name }}" method="POST" style="display:inline">
-                    <input type="hidden" name="delete" value="{{ file.name }}">
-                    <input type="submit" value="Delete">
-                </form>
-                <form action="/download/{{ file.name }}" method="GET" style="display:inline">
-                    <button type="submit">Download</button>
-                </form>
-            </li>
-        {% endfor %}
-    </ul>
+    <div class="container">
+        <h1>Upload your .nbt file</h1>
+
+        <form action="/" method="POST" enctype="multipart/form-data" class="file-upload-form">
+            <label for="nbt_file" class="btn upload-btn file-btn">Select File</label>
+            <input type="file" name="nbt_file" id="nbt_file" class="file-input" onchange="this.form.submit()" required>
+        </form>
+               
+
+        <table class="file-table">
+            <thead>
+                <tr>
+                    <th>File Name</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for file in files %}
+                <tr>
+                    <td>{{ file.filename }}</td>
+                    <td>
+                        <form action="/delete/{{ file.name }}" method="POST" class="action-form">
+                            <button type="submit" class="btn delete-btn">Delete</button>
+                        </form>
+                        <a href="/download/{{ file.name }}" class="btn download-btn">Download</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 </body>
 </html>

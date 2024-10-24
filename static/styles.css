@@ -1,0 +1,112 @@
+body {
+    background-color: #008b8b; /* Dark Cyan */
+    font-family: Arial, sans-serif;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 900px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #004d4d;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+h1 {
+    margin-bottom: 20px;
+    font-size: 2.5em;
+}
+
+.file-upload-form {
+    margin-bottom: 30px;
+}
+
+.upload-label {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 1.2em;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+.file-btn {
+    background-color: #006666; /* Dark cyan */
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 10px;
+    color: #fff;
+    font-size: 1em;
+    text-align: center;
+    transition: background-color 0.5s ease; 
+}
+
+.file-btn:hover {
+    background-color: #00a3a3;
+}
+
+.btn {
+    background-color: #006666;
+    padding: 10px 20px;
+    border-radius: 5px;
+    color: white;
+    font-size: 1em;
+    cursor: pointer;
+    border: none;
+    transition: background-color 0.5s ease;
+}
+
+.btn:hover {
+    background-color: #00a3a3;
+}
+
+.btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    color: #fff;
+    font-size: 1em;
+}
+
+.file-table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+}
+
+.file-table th, .file-table td {
+    padding: 10px;
+    border-bottom: 1px solid #004040;
+}
+
+.action-form {
+    display: inline-block;
+}
+
+.delete-btn {
+    background-color: #ff6666;
+}
+
+.delete-btn:hover {
+    background-color: #cc3333;
+}
+
+.download-btn {
+    background-color: #3399ff;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    display: inline-block;
+}
+
+.download-btn:hover {
+    background-color: #0066cc;
+}
